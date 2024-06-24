@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Engine\CsvReader.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Engine\CsvReader.h" />

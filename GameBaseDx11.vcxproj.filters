@@ -47,6 +47,7 @@
       <Filter>GameChara</Filter>
     </ClCompile>
     <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="Light.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\GameObject.h">
@@ -80,5 +81,6 @@
       <Filter>GameChara</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h" />
+    <ClInclude Include="Light.h" />
   </ItemGroup>
 </Project>

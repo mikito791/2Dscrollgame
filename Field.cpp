@@ -60,7 +60,7 @@ void Field::Reset()
 		Map = nullptr;
 	}
 	CsvReader csv;
-	bool ret = csv.Load("Assets/stage4.csv");
+	bool ret = csv.Load("Assets/stage2.csv");
 	assert(ret);
 	width = csv.GetWidth(0);
 	height = csv.GetHeight();

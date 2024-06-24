@@ -82,11 +82,13 @@ void Player::Update()
 			onGround = false;
 		}
 	}
-	/*if (transform_.position_.y >= GROUND)
-	{
-		transform_.position_.y = GROUND;
-		onGround = true;
-	}*/
+	//if (transform_.position_.y >= GROUND)
+	//{
+	//	/*transform_.position_.y = GROUND;
+	//	onGround = true;*/
+	//	//KillMe();
+	//}
+	
 	//“–‚½‚è”»’è
 	std::list<Slime*> pSlimes = GetParent()->FindGameObjects<Slime>();
 	for (Slime* pSlime : pSlimes)
