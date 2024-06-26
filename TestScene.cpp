@@ -1,4 +1,5 @@
 #include "TestScene.h"
+#include"Vision.h"
 #include"BackGround.h"
 #include"Camera.h"
 #include "Player.h"
@@ -14,12 +15,14 @@ TestScene::TestScene(GameObject * parent)
 //‰Šú‰»
 void TestScene::Initialize()
 {
+
 	Instantiate<BackGround>(this);
 	Instantiate<Camera>(this);
 	Field* pField = Instantiate<Field>(this);
 	//Instantiate<Slime>(this);
 	Instantiate<Player>(this);
 	pField->Reset();
+	Instantiate<Vision>(this);
 	//Instantiate<Bird>(this);
 }
 

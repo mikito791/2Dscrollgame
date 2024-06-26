@@ -2,10 +2,9 @@
 #include"Camera.h"
 Light::Light(GameObject* scene)
 {
-	//hImage=LoadGraph("Assets/")
+	hImage = LoadGraph("Assets/stone.png");
 	assert(hImage > 0);
-	transform_.position_.x = 10.0f;
-	transform_.position_.y = 400.0;
+
 }
 
 Light::~Light()
@@ -14,6 +13,10 @@ Light::~Light()
 
 void Light::Update()
 {
+	if (--timer <= 0)
+	{
+		KillMe();
+	}
 }
 
 void Light::Draw()
@@ -25,11 +28,11 @@ void Light::Draw()
 	{
 		x -= cam->GetValue();
 	}
-	//DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
+	DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
 }
 
-void Light::SetPosition(int x, int y)
+void Light::SetPosition(XMFLOAT3 pos)
 {
-	transform_.position_.x = x;
-	transform_.position_.y = y;
+	transform_.position_ = pos;	
+	timer = 90;
 }

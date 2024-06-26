@@ -18,4 +18,6 @@ private:
 	bool prevSpaceKey;
 	float jumpSpeed;
 	bool onGround;
+	int LightTimer;
+	bool prevLightSkey;
 };

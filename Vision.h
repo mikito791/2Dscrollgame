@@ -1,16 +1,15 @@
 #pragma once
 #include "Engine/GameObject.h"
-class Light :
+class Vision :
     public GameObject
 {
 public:
-	Light(GameObject* scene);
-	~Light();
+	Vision(GameObject* scene);
+	~Vision();
 	void Update() override;
 	void Draw() override;
-	void SetPosition(XMFLOAT3 pos);
 private:
-	int hImage;
-	int timer;
+	int ScreenWidth;
+	int ScreenHeight;
 };
 

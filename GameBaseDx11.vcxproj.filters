@@ -10,9 +10,15 @@
     <Filter Include="01Engine\ResourceManager">
       <UniqueIdentifier>{bedee914-5063-4c08-95bb-79c861b4969c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameChara">
+    <Filter Include="ゲームキャラ">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="背景ステージ">
+      <UniqueIdentifier>{83dcf4f3-dc74-4484-bd3f-91f66e7aa215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{ff2883fe-351b-4fd3-b2a4-4779c0549caf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,20 +40,31 @@
     <ClCompile Include="Engine\Transform.cpp">
       <Filter>01Engine\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Stone.cpp" />
-    <ClCompile Include="Field.cpp" />
     <ClCompile Include="Slime.cpp">
-      <Filter>GameChara</Filter>
+      <Filter>ゲームキャラ</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>GameChara</Filter>
+      <Filter>ゲームキャラ</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>GameChara</Filter>
+      <Filter>ゲームキャラ</Filter>
     </ClCompile>
-    <ClCompile Include="BackGround.cpp" />
-    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Light.cpp">
+      <Filter>ゲームキャラ</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround.cpp">
+      <Filter>背景ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>背景ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="Vision.cpp">
+      <Filter>背景ステージ</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\GameObject.h">
@@ -68,19 +85,30 @@
     <ClInclude Include="Engine\Transform.h">
       <Filter>01Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Stone.h" />
-    <ClInclude Include="Field.h" />
     <ClInclude Include="Slime.h">
-      <Filter>GameChara</Filter>
+      <Filter>ゲームキャラ</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>GameChara</Filter>
+      <Filter>ゲームキャラ</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>GameChara</Filter>
+      <Filter>ゲームキャラ</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround.h" />
-    <ClInclude Include="Light.h" />
+    <ClInclude Include="Light.h">
+      <Filter>ゲームキャラ</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround.h">
+      <Filter>背景ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
+      <Filter>背景ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="Vision.h">
+      <Filter>背景ステージ</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

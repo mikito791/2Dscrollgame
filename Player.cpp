@@ -3,6 +3,7 @@
 #include <assert.h>
 #include"Field.h"
 #include"Slime.h"
+#include"Light.h"
 #include"Camera.h"
 namespace
 {
@@ -22,6 +23,8 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 	transform_.position_.y = GROUND;
 	jumpSpeed = 0.0f;
 	onGround = true;
+	prevSpaceKey = false;
+	prevLightSkey = false;
 }
 
 Player::~Player()
@@ -73,12 +76,14 @@ void Player::Update()
 		int pushR = pField->CollisionDown(transform_.position_.x + 50, transform_.position_.y + 63);
 		int pushL = pField->CollisionDown(transform_.position_.x + 14, transform_.position_.y + 63);
 		int push = max(pushR, pushL);//‚Q‚Â‚Ì‘«Œ³‚Ì‚ß‚è‚±‚İ‚Ì‘å‚«‚¢‚Ù‚¤
-		if (push >= 1) {
+		if (push >= 1) 
+		{
 			transform_.position_.y -= push - 1;
 			jumpSpeed = 0.0f;
 			onGround = true;
 		}
-		else {
+		else
+		{
 			onGround = false;
 		}
 	}
@@ -88,7 +93,21 @@ void Player::Update()
 	//	onGround = true;*/
 	//	//KillMe();
 	//}
+	//ƒ‰ƒCƒg
 	
+	if (CheckHitKey(KEY_INPUT_S))
+	{
+		if (prevLightSkey)
+		{
+			Light* li = Instantiate<Light>(GetParent());
+			li->SetPosition(transform_.position_);
+		}
+		prevLightSkey = true;
+	}
+	else
+	{
+		prevLightSkey = false;
+	}
 	//“–‚½‚è”»’è
 	std::list<Slime*> pSlimes = GetParent()->FindGameObjects<Slime>();
 	for (Slime* pSlime : pSlimes)
@@ -122,6 +141,9 @@ void Player::Draw()
 		x -= cam->GetValue();
 	}
 	DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
+	//«Œã‚ÅÁ‚·
+	DrawCircle(x + 32.0f, y + 32.0f, 50.0f, GetColor(0, 0, 0), 0);//Œ©‚¦‚é”ÍˆÍ
+	DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//“–‚½‚è”»’è
 }
 
 void Player::SetPosition(int x, int y)
