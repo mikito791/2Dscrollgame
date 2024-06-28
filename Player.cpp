@@ -5,6 +5,7 @@
 #include"Slime.h"
 #include"Light.h"
 #include"Camera.h"
+#include"Engine/SceneManager.h"
 namespace
 {
 	const float MOVE_SPEED = 10.0f;
@@ -89,12 +90,12 @@ void Player::Update()
 			onGround = false;
 		}
 	}
-	//if (transform_.position_.y >= GROUND)
-	//{
-	//	/*transform_.position_.y = GROUND;
-	//	onGround = true;*/
-	//	//KillMe();
-	//}
+	if (transform_.position_.y >= 800)
+	{
+		KillMe();
+		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
+		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
+	}
 	//ƒ‰ƒCƒg
 	
 	if (CheckHitKey(KEY_INPUT_S))
@@ -118,6 +119,8 @@ void Player::Update()
 		{
 			//“–‚½‚Á‚½ˆ—
 			KillMe();
+			SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
+			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 		}
 	}
 	//ƒJƒƒ‰
