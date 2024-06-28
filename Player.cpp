@@ -3,7 +3,6 @@
 #include <assert.h>
 #include"Field.h"
 #include"Slime.h"
-#include"Light.h"
 #include"Camera.h"
 #include"Engine/SceneManager.h"
 namespace
@@ -25,7 +24,6 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 	jumpSpeed = 0.0f;
 	onGround = true;
 	prevSpaceKey = false;
-	prevLightSkey = false;
 }
 
 Player::~Player()
@@ -96,21 +94,6 @@ void Player::Update()
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 	}
-	//ライト
-	
-	if (CheckHitKey(KEY_INPUT_S))
-	{
-		if (prevLightSkey)
-		{
-			Light* li = Instantiate<Light>(GetParent());
-			li->SetPosition(transform_.position_);
-		}
-		prevLightSkey = true;
-	}
-	else
-	{
-		prevLightSkey = false;
-	}
 	//当たり判定
 	std::list<Slime*> pSlimes = GetParent()->FindGameObjects<Slime>();
 	for (Slime* pSlime : pSlimes)
@@ -134,6 +117,12 @@ void Player::Update()
 	/*if (cam != nullptr) {
 		cam->GetPlayerPos(this);
 	}*/
+	if (CheckHitKey(KEY_INPUT_W))
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 125);
+		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
+
+	}
 }
 
 void Player::Draw()
@@ -147,8 +136,8 @@ void Player::Draw()
 	}
 	DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
 	//↓後で消す
-	DrawCircle(x + 32.0f, y + 32.0f, 50.0f, GetColor(0, 0, 0), 0);//見える範囲
-	DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定
+	//DrawCircle(x + 32.0f, y + 32.0f, 50.0f, GetColor(0, 0, 0), 0);//見える範囲
+	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定
 }
 
 void Player::SetPosition(int x, int y)

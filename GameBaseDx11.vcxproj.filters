@@ -49,9 +49,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>ゲームキャラ</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>ゲームキャラ</Filter>
-    </ClCompile>
     <ClCompile Include="BackGround.cpp">
       <Filter>背景ステージ</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
       <Filter>ゲームキャラ</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>ゲームキャラ</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
       <Filter>ゲームキャラ</Filter>
     </ClInclude>
     <ClInclude Include="BackGround.h">
