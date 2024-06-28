@@ -7,10 +7,10 @@
 #include"Engine/SceneManager.h"
 namespace
 {
-	const float MOVE_SPEED = 10.0f;
+	const float MOVE_SPEED = 5.0f;
 	const float GROUND = 400.0f;
-	const float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
-	const float GRAVITY = 50.8f / 60.0f;//重力加速度
+	const float JUMP_HEIGHT = 64.0f * 4.0f;//ジャンプの高さ
+	const float GRAVITY = 40.0f / 60.0f;//重力加速度
 	/*Memo const float JUMP = -12.0f;
 	const float GRAVITY = 0.5f;
 	XMFLOAT3 JumpSpeed{ 0,0,0 };*/
