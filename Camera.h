@@ -10,6 +10,7 @@ public:
 	void Update() override;
 	void SetValue(int v) { value = v; }
 	int GetValue() { return value; }
+	void DrawDarkOverlay();
 private:
 	Player* pPlayer;
 	int value;

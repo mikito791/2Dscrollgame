@@ -40,7 +40,6 @@
     <ClCompile Include="Engine\Transform.cpp">
       <Filter>01Engine\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Stone.cpp" />
     <ClCompile Include="Slime.cpp">
       <Filter>ゲームキャラ</Filter>
     </ClCompile>
@@ -57,9 +56,6 @@
       <Filter>背景ステージ</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>背景ステージ</Filter>
-    </ClCompile>
-    <ClCompile Include="Vision.cpp">
       <Filter>背景ステージ</Filter>
     </ClCompile>
     <ClCompile Include="TestScene.cpp">
@@ -85,7 +81,6 @@
     <ClInclude Include="Engine\Transform.h">
       <Filter>01Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Stone.h" />
     <ClInclude Include="Slime.h">
       <Filter>ゲームキャラ</Filter>
     </ClInclude>
@@ -102,9 +97,6 @@
       <Filter>背景ステージ</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
-      <Filter>背景ステージ</Filter>
-    </ClInclude>
-    <ClInclude Include="Vision.h">
       <Filter>背景ステージ</Filter>
     </ClInclude>
     <ClInclude Include="TestScene.h">

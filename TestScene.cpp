@@ -1,5 +1,4 @@
 #include "TestScene.h"
-#include"Vision.h"
 #include"BackGround.h"
 #include"Camera.h"
 #include "Player.h"
@@ -22,7 +21,6 @@ void TestScene::Initialize()
 	//Instantiate<Slime>(this);
 	Instantiate<Player>(this);
 	pField->Reset();
-	Instantiate<Vision>(this);
 	//Instantiate<Bird>(this);
 }
 

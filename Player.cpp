@@ -38,6 +38,8 @@ Player::~Player()
 void Player::Update()
 {
 	Field* pField = GetParent()->FindGameObject<Field>();
+	Camera* cam = GetParent()->FindGameObject<Camera>();
+	cam->DrawDarkOverlay();
 	//ˆÚ“®
 	if (CheckHitKey(KEY_INPUT_D))
 	{
@@ -119,7 +121,7 @@ void Player::Update()
 		}
 	}
 	//ƒJƒƒ‰
-	Camera* cam = GetParent()->FindGameObject<Camera>();
+	//wCamera* cam = GetParent()->FindGameObject<Camera>();
 	int x = (int)transform_.position_.x - cam->GetValue();
 	if (x > 400)
 	{
