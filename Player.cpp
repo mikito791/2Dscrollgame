@@ -9,7 +9,7 @@ namespace
 {
 	const float MOVE_SPEED = 5.0f;
 	const float GROUND = 400.0f;
-	const float JUMP_HEIGHT = 64.0f * 4.0f;//ジャンプの高さ
+	const float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
 	const float GRAVITY = 9.8f / 60.0f;//重力加速度
 	/*Memo const float JUMP = -12.0f;
 	const float GRAVITY = 0.5f;
@@ -122,6 +122,7 @@ void Player::Update()
 		cam->GetPlayerPos(this);
 	}*/
 	//ゴール判定
+
 }
 
 void Player::Draw()

@@ -55,10 +55,13 @@
     <ClCompile Include="Field.cpp">
       <Filter>背景ステージ</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
+    <ClCompile Include="PlayScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameOverScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,10 +99,13 @@
     <ClInclude Include="Field.h">
       <Filter>背景ステージ</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h">
+    <ClInclude Include="PlayScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameOverScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>

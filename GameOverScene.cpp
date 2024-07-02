@@ -1,8 +1,8 @@
 #include "GameOverScene.h"
-#include"TestScene.h"
+#include"PlayScene.h"
 #include"Engine/SceneManager.h"
 
-GameOverScene::GameOverScene(GameObject* parent) :GameObject(parent, "SceneManager")
+GameOverScene::GameOverScene(GameObject* parent) :GameObject(parent, "GamoOver")
 {
 	hImage = LoadGraph("Assets/GameOver.png");
 	assert(hImage > 0);
@@ -23,7 +23,7 @@ void GameOverScene::Update()
 	if (CheckHitKey(KEY_INPUT_C))
 	{
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
-		pSM->ChangeScene(SCENE_ID::SCENE_ID_TEST);
+		pSM->ChangeScene(SCENE_ID::SCENE_ID_PLAY);
 	}
 }
 

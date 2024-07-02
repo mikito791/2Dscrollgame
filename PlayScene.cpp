@@ -1,4 +1,4 @@
-#include "TestScene.h"
+#include "PlayScene.h"
 #include"BackGround.h"
 #include"Camera.h"
 #include "Player.h"
@@ -6,13 +6,13 @@
 #include "Field.h"
 
 //コンストラクタ
-TestScene::TestScene(GameObject * parent)
-	: GameObject(parent, "TestScene")
+PlayScene::PlayScene(GameObject * parent)
+	: GameObject(parent, "PlayScene")
 {
 }
 
 //初期化
-void TestScene::Initialize()
+void PlayScene::Initialize()
 {
 
 	Instantiate<BackGround>(this);
@@ -25,16 +25,16 @@ void TestScene::Initialize()
 }
 
 //更新
-void TestScene::Update()
+void PlayScene::Update()
 {
 }
 
 //描画
-void TestScene::Draw()
+void PlayScene::Draw()
 {
 }
 
 //開放
-void TestScene::Release()
+void PlayScene::Release()
 {
 }
