@@ -10,7 +10,7 @@ namespace
 	const float MOVE_SPEED = 5.0f;
 	const float GROUND = 400.0f;
 	const float JUMP_HEIGHT = 64.0f * 4.0f;//ジャンプの高さ
-	const float GRAVITY = 40.0f / 60.0f;//重力加速度
+	const float GRAVITY = 9.8f / 60.0f;//重力加速度
 	/*Memo const float JUMP = -12.0f;
 	const float GRAVITY = 0.5f;
 	XMFLOAT3 JumpSpeed{ 0,0,0 };*/
@@ -88,7 +88,7 @@ void Player::Update()
 			onGround = false;
 		}
 	}
-	if (transform_.position_.y >= 800)
+	if (transform_.position_.y >= 1500)
 	{
 		KillMe();
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
@@ -114,15 +114,14 @@ void Player::Update()
 		x = 400;
 		cam->SetValue((int)transform_.position_.x - x);
 	}
+	/*if (CheckHitKey(KEY_INPUT_R))
+	{
+		ResetCamPos();
+	}*/
 	/*if (cam != nullptr) {
 		cam->GetPlayerPos(this);
 	}*/
-	if (CheckHitKey(KEY_INPUT_W))
-	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 125);
-		//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
-
-	}
+	//ゴール判定
 }
 
 void Player::Draw()
@@ -145,3 +144,4 @@ void Player::SetPosition(int x, int y)
 	transform_.position_.x = x;
 	transform_.position_.y = y;
 }
+

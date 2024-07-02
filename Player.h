@@ -18,5 +18,5 @@ private:
 	bool prevSpaceKey;
 	float jumpSpeed;
 	bool onGround;
-	
+
 };

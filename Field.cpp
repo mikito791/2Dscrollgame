@@ -60,7 +60,10 @@ void Field::Reset()
 		Map = nullptr;
 	}
 	CsvReader csv;
-	bool ret = csv.Load("Assets/stage2.csv");
+	bool ret = csv.Load("Assets/stage1.csv");
+	//bool ret = csv.Load("Assets/stage2.csv");
+	//bool ret = csv.Load("Assets/stage3.csv");
+	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
 	width = csv.GetWidth(0);
 	height = csv.GetHeight();
@@ -83,7 +86,7 @@ void Field::Reset()
 		for (int w = 0; w < width; w++)
 		{
 			switch (csv.GetInt(w,h+height+1))
-			{
+			{//ƒLƒƒƒ‰‚ð‘‚â‚µ‚½‚¢‚Æ‚«‚Í‚±‚±‚É
 			case 0://player
 			{
 				Player* pPlayer = GetParent()->FindGameObject<Player>();
@@ -152,6 +155,52 @@ bool Field::IsWallBlock(int x, int y)
 	case 33:
 	case 34:
 	case 35:
+		return true;
+	}
+	return false;
+}
+
+bool Field::IsGoal(int x, int y)
+{
+	int chipX = x / 32;
+	int chipY = y / 32;
+	switch (Map[chipY * width + chipX])
+	{
+	case 128:
+	case 144:
+	case 160:
+	case 176:
+	case 192:
+
+	case 129:
+	case 145:
+	case 161:
+	case 177:
+	case 193:
+
+	case 130:
+	case 146:
+	case 162:
+	case 178:
+	case 194:
+
+	case 131:
+	case 147:
+	case 163:
+	case 179:
+	case 195:
+
+	case 132:
+	case 148:
+	case 164:
+	case 180:
+	case 196:
+
+	case 133:
+	case 149:
+	case 165:
+	case 181:
+	case 197:
 		return true;
 	}
 	return false;
