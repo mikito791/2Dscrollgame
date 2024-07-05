@@ -88,6 +88,18 @@ void Player::Update()
 			onGround = false;
 		}
 	}
+	if (!onGround && pField != nullptr)
+	{
+		int HitX = transform_.position_.x + 32;
+		int HitY = transform_.position_.y;
+
+		int pushUp = pField->CollisionUp(HitX, HitY);
+		if (pushUp > 0)
+		{
+			jumpSpeed = 0.0f;
+			transform_.position_.y += pushUp;
+		}
+	}
 	if (transform_.position_.y >= 1500)
 	{
 		KillMe();
@@ -114,10 +126,11 @@ void Player::Update()
 		x = 400;
 		cam->SetValue((int)transform_.position_.x - x);
 	}
-	/*if (CheckHitKey(KEY_INPUT_R))
+	if (CheckHitKey(KEY_INPUT_R))
 	{
-		ResetCamPos();
-	}*/
+		x = 0;
+		cam->SetValue((int)transform_.position_.x - x);
+	}
 	/*if (cam != nullptr) {
 		cam->GetPlayerPos(this);
 	}*/

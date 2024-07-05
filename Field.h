@@ -26,6 +26,7 @@ public:
 	/// <param name="y">Y座標</param>
 	/// <returns>めり込んだ量（ドット）</returns>
 	int CollisionDown(int x, int y);
+	int CollisionUp(int x, int y);
 	bool IsGoal(int x, int y);
 private:
 	int hImage;
