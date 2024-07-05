@@ -39,7 +39,7 @@ void Player::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	Camera* cam = GetParent()->FindGameObject<Camera>();
 	cam->DrawDarkOverlay();
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
 	//移動
 	if (CheckHitKey(KEY_INPUT_D))
 	{
@@ -112,7 +112,7 @@ void Player::Update()
 	std::list<Slime*> pSlimes = GetParent()->FindGameObjects<Slime>();
 	for (Slime* pSlime : pSlimes)
 	{
-		if (pSlime->ColliderCircle(transform_.position_.x+32.0f, transform_.position_.y+32.0f , 20.0f))
+		if (pSlime->SColliderCircle(transform_.position_.x+32.0f, transform_.position_.y+32.0f , 20.0f))
 		{
 			//当たった処理
 			KillMe();
@@ -157,7 +157,7 @@ void Player::Draw()
 	}
 	DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
 	//↓後で消す
-	//DrawCircle(x + 32.0f, y + 32.0f, 50.0f, GetColor(0, 0, 0), 0);//見える範囲
+	DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
 	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定
 }
 
@@ -166,4 +166,28 @@ void Player::SetPosition(int x, int y)
 	transform_.position_.x = x;
 	transform_.position_.y = y;
 }
+
+//bool Player::PColliderCircle(float x, float y, float r)
+//{
+//	//x,y,rが相手の円の情報
+//	//自分の円の情報
+//	float myCenterX = transform_.position_.x + 32.0f;
+//	float myCenterY = transform_.position_.y + 32.0f;
+//	float dx = myCenterX - x;
+//	float dy = myCenterY - y;
+//	float dSqrts = dx * dx + dy * dy;
+//	//float dSqrts =sqrt(dx * dx + dy * dy);
+//
+//	float myR = 20.0f + r;
+//	float rSqrt = myR * myR;
+//	//float rSqrt = sqrt(myR * myR);
+//	if (dSqrts <= rSqrt)
+//	{
+//		return true;
+//	}
+//	else
+//	{
+//		return false;
+//	}
+//}
 

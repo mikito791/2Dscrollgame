@@ -3,7 +3,7 @@
 
 TitleScene::TitleScene(GameObject* parent)
 {
-	hImage = LoadGraph("Assets/TitleScene.png");
+	hImage = LoadGraph("Assets/TitleScene1.png");
 	assert(hImage > 0);
 }
 
@@ -17,7 +17,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_SPACE))
+	if (CheckHitKey(KEY_INPUT_S))
 	{
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_PLAY);

@@ -2,6 +2,7 @@
 #include <assert.h>
 #include"Camera.h"
 #include"Field.h"
+#include"Player.h"
 namespace {
 	static const int SCREEN_WIDTH = 1280;
 	const float GRAVITY = 48.0f / 60.0f;
@@ -72,7 +73,7 @@ void Slime::SetPosition(int x, int y)
 }
 
 //“–‚½‚è”»’è
-bool Slime::ColliderCircle(float x, float y, float r)
+bool Slime::SColliderCircle(float x, float y, float r)
 {
 	//x,y,r‚ª‘Šè‚Ì‰~‚Ìî•ñ
 	//©•ª‚Ì‰~‚Ìî•ñ

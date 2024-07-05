@@ -12,11 +12,12 @@ public:
 	void Update() override;
 	void Draw() override;
 	void SetPosition(int x, int y);
+	//bool PColliderCircle(float x, float y, float r);
 private:
 	int hImage;
 	GameObject* sceneTop;
 	bool prevSpaceKey;
 	float jumpSpeed;
 	bool onGround;
-
+	
 };
