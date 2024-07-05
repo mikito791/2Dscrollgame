@@ -39,7 +39,7 @@ void Player::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	Camera* cam = GetParent()->FindGameObject<Camera>();
 	cam->DrawDarkOverlay();
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
+	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
 	//移動
 	if (CheckHitKey(KEY_INPUT_D))
 	{
