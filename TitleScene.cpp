@@ -1,13 +1,13 @@
-#include "GameClearScene.h"
+#include "TitleScene.h"
 #include"Engine/SceneManager.h"
 
-GameClearScene::GameClearScene(GameObject* parent) :GameObject(parent, "GamoClear")
+TitleScene::TitleScene(GameObject* parent)
 {
-	hImage = LoadGraph("Assets/GameClear.png");
+	hImage = LoadGraph("Assets/TitleScene.png");
 	assert(hImage > 0);
 }
 
-GameClearScene::~GameClearScene()
+TitleScene::~TitleScene()
 {
 	if (hImage > 0)
 	{
@@ -15,16 +15,16 @@ GameClearScene::~GameClearScene()
 	}
 }
 
-void GameClearScene::Update()
+void TitleScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_C))
+	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
-		pSM->ChangeScene(SCENE_ID::SCENE_ID_TITLE);
+		pSM->ChangeScene(SCENE_ID::SCENE_ID_PLAY);
 	}
 }
 
-void GameClearScene::Draw()
+void TitleScene::Draw()
 {
 	int x = (int)transform_.position_.x;
 	int y = (int)transform_.position_.y;

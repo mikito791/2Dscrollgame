@@ -39,6 +39,7 @@ void Player::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	Camera* cam = GetParent()->FindGameObject<Camera>();
 	cam->DrawDarkOverlay();
+	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
 	//移動
 	if (CheckHitKey(KEY_INPUT_D))
 	{
@@ -88,6 +89,7 @@ void Player::Update()
 			onGround = false;
 		}
 	}
+	//ブロックを貫通しない
 	if (!onGround && pField != nullptr)
 	{
 		int HitX = transform_.position_.x + 32;
@@ -119,13 +121,14 @@ void Player::Update()
 		}
 	}
 	//カメラ
-	//wCamera* cam = GetParent()->FindGameObject<Camera>();
+	//Camera* cam = GetParent()->FindGameObject<Camera>();
 	int x = (int)transform_.position_.x - cam->GetValue();
 	if (x > 400)
 	{
 		x = 400;
 		cam->SetValue((int)transform_.position_.x - x);
 	}
+	//カメラのリセット、ステージの移動で使うかも
 	if (CheckHitKey(KEY_INPUT_R))
 	{
 		x = 0;
@@ -135,7 +138,12 @@ void Player::Update()
 		cam->GetPlayerPos(this);
 	}*/
 	//ゴール判定
-
+	int Goal = pField->IsGoal(transform_.position_.x, transform_.position_.y);
+	if (Goal > 0)
+	{
+		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
+		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
+	}
 }
 
 void Player::Draw()

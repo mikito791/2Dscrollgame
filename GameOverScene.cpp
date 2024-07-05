@@ -23,7 +23,7 @@ void GameOverScene::Update()
 	if (CheckHitKey(KEY_INPUT_C))
 	{
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
-		pSM->ChangeScene(SCENE_ID::SCENE_ID_PLAY);
+		pSM->ChangeScene(SCENE_ID::SCENE_ID_TITLE);
 	}
 }
 
