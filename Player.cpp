@@ -5,11 +5,12 @@
 #include"Slime.h"
 #include"Camera.h"
 #include"Engine/SceneManager.h"
+#include"Light.h"
 namespace
 {
-	const float MOVE_SPEED = 5.0f;
+	float MOVE_SPEED = 5.0f;
 	const float GROUND = 400.0f;
-	const float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
+	float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
 	const float GRAVITY = 9.8f / 60.0f;//重力加速度
 	/*Memo const float JUMP = -12.0f;
 	const float GRAVITY = 0.5f;
@@ -39,7 +40,6 @@ void Player::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	Camera* cam = GetParent()->FindGameObject<Camera>();
 	cam->DrawDarkOverlay();
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0); // ブレンドモードを元に戻す
 	//移動
 	if (CheckHitKey(KEY_INPUT_D))
 	{
@@ -151,10 +151,23 @@ void Player::Update()
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
 	}
+	if (CheckHitKey(KEY_INPUT_W))
+	{
+		MOVE_SPEED = 0;
+		JUMP_HEIGHT = 0;
+		Light* li = Instantiate<Light>(GetParent());
+		li->SetPosition(transform_.position_);
+	}
+	else
+	{
+		MOVE_SPEED = 5.0f;
+		JUMP_HEIGHT = 48.0f * 4.0f;
+	}
 }
 
 void Player::Draw()
 {
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	int x = (int)transform_.position_.x;
 	int y = (int)transform_.position_.y;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
@@ -166,6 +179,7 @@ void Player::Draw()
 	//↓後で消す
 	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
 	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定
+	 // ブレンドモードを元に戻す
 }
 
 void Player::SetPosition(int x, int y)

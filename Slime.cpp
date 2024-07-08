@@ -28,6 +28,7 @@ void Slime::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	int x = (int)transform_.position_.x;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
+	cam->DrawDarkOverlay();
 	if (cam != nullptr)
 	{
 		x -= cam->GetValue();
@@ -55,6 +56,7 @@ void Slime::Update()
 
 void Slime::Draw()
 {
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	int x = (int)transform_.position_.x;
 	int y = (int)transform_.position_.y;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
@@ -63,7 +65,10 @@ void Slime::Draw()
 		x -= cam->GetValue();
 	}
 	DrawRectGraph(x, y, 0, 0, 64, 64,hImage,TRUE,TRUE);
-	DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
+	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
+	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100); // 透明度を設定 (0-255)
+	//DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), TRUE); // 画面全体に黒い四角形を描画
+	
 }
 
 void Slime::SetPosition(int x, int y)
