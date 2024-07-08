@@ -55,6 +55,13 @@ void Player::Update()
 	else if (CheckHitKey(KEY_INPUT_A))
 	{
 		transform_.position_.x -= MOVE_SPEED;
+		int hitX = transform_.position_.x + 50;
+		int hitY = transform_.position_.y + 63;
+		if (pField != nullptr)
+		{
+			int push = pField->CollisionLeft(hitX, hitY);
+			transform_.position_.x += push;
+		}
 	}
 	//ƒWƒƒƒ“ƒv
 	if (CheckHitKey(KEY_INPUT_SPACE))
@@ -157,7 +164,7 @@ void Player::Draw()
 	}
 	DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
 	//«Œã‚ÅÁ‚·
-	DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//Œ©‚¦‚é”ÍˆÍ
+	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//Œ©‚¦‚é”ÍˆÍ
 	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//“–‚½‚è”»’è
 }
 
