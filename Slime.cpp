@@ -51,9 +51,15 @@ void Slime::Update()
 		if (push >= 1) 
 		{
 			transform_.position_.y -= push;
-			transform_.position_.x -= 1.0f;
+			transform_.position_.x -= 0.5f;
+			int pushEnd = pField->IsLeftEnd(transform_.position_.x + 50, transform_.position_.y + 42);
+			if (pushEnd >= 1)
+			{
+				KillMe();
+			}
 		}
 	}
+	
 }
 
 void Slime::Draw()

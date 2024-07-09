@@ -29,6 +29,7 @@ public:
 	int CollisionDown(int x, int y);
 	int CollisionUp(int x, int y);
 	bool IsGoal(int x, int y);
+	bool IsLeftEnd(int x, int y);
 private:
 	int hImage;
 	bool IsWallBlock(int x, int y);

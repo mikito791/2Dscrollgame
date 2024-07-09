@@ -12,6 +12,9 @@ namespace
 	const float GROUND = 400.0f;
 	float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
 	const float GRAVITY = 9.8f / 60.0f;//重力加速度
+	const float TRANS_Y = 63;
+	const float TRANS_XR = 50;
+	const float TRANS_XL = 14;
 	/*Memo const float JUMP = -12.0f;
 	const float GRAVITY = 0.5f;
 	XMFLOAT3 JumpSpeed{ 0,0,0 };*/
@@ -44,8 +47,8 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_D))
 	{
 		transform_.position_.x += MOVE_SPEED;
-		int hitX = transform_.position_.x + 50;
-		int hitY = transform_.position_.y + 63;
+		int hitX = transform_.position_.x + TRANS_XR;
+		int hitY = transform_.position_.y + TRANS_Y;
 		if (pField != nullptr)
 		{
 			int push = pField->CollisionRight(hitX, hitY);
@@ -55,13 +58,17 @@ void Player::Update()
 	else if (CheckHitKey(KEY_INPUT_A))
 	{
 		transform_.position_.x -= MOVE_SPEED;
-		int hitX = transform_.position_.x + 50;
-		int hitY = transform_.position_.y + 63;
+		int hitX = transform_.position_.x + TRANS_XL;
+		int hitY = transform_.position_.y + TRANS_Y;
 		if (pField != nullptr)
 		{
 			int push = pField->CollisionLeft(hitX, hitY);
 			transform_.position_.x += push;
 		}
+	}
+	if (transform_.position_.x < 0)
+	{
+		transform_.position_.x = 0;
 	}
 	//ジャンプ
 	if (CheckHitKey(KEY_INPUT_SPACE))
@@ -82,8 +89,8 @@ void Player::Update()
 	transform_.position_.y += jumpSpeed;//座標　+=　速度
 	if (pField != nullptr)
 	{
-		int pushR = pField->CollisionDown(transform_.position_.x + 50, transform_.position_.y + 63);
-		int pushL = pField->CollisionDown(transform_.position_.x + 14, transform_.position_.y + 63);
+		int pushR = pField->CollisionDown(transform_.position_.x + TRANS_XR, transform_.position_.y + TRANS_Y);
+		int pushL = pField->CollisionDown(transform_.position_.x + TRANS_XL, transform_.position_.y + TRANS_Y);
 		int push = max(pushR, pushL);//２つの足元のめりこみの大きいほう
 		if (push >= 1) 
 		{

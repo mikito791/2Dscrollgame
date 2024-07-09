@@ -138,6 +138,8 @@ int Field::CollisionLeft(int x, int y)
 {
 	if (IsWallBlock(x - 1, y))
 		return 32 - (x % 32);
+	if (IsLeftEnd(x - 1, y))
+		return 32 - (x % 32);
 	return 0;
 }
 
@@ -215,6 +217,18 @@ bool Field::IsGoal(int x, int y)
 	case 165:
 	case 181:
 	case 197:
+		return true;
+	}
+	return false;
+}
+
+bool Field::IsLeftEnd(int x, int y)
+{
+	int chipX = x / 32;
+	int chipY = y / 32;
+	switch (Map[chipY * width + chipX])
+	{
+	case 250:
 		return true;
 	}
 	return false;
