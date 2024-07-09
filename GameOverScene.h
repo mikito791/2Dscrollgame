@@ -15,5 +15,6 @@ public:
 private:
 	int hImage;
 	int BlendAlpha;
+	int timer;
 };
 

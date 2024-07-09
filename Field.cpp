@@ -62,8 +62,8 @@ void Field::Reset()
 	CsvReader csv;
 	//bool ret = csv.Load("Assets/stage1.csv");
 	//bool ret = csv.Load("Assets/stage2.csv");
-	//bool ret = csv.Load("Assets/stage3.csv");
-	bool ret = csv.Load("Assets/stage4.csv");
+	bool ret = csv.Load("Assets/stage3.csv");
+	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
 	width = csv.GetWidth(0);
 	height = csv.GetHeight();

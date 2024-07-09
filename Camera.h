@@ -4,7 +4,7 @@
 class Camera : public GameObject
 {
 public:
-	Camera(GameObject* parent) :GameObject(parent) { value = 0; }
+	Camera(GameObject* parent) :GameObject(parent) { value = 0, OnField = true; }
 	~Camera() {}
 	//void GetPlayerPos(Player* _player) { pPlayer = _player; }
 	//void Update() override;
@@ -14,7 +14,7 @@ public:
 	/*void SetResetCamPos(int c) { camPos = c; }
 	void ResetCamera() { value = camPos; }*/
 private:
-	//Player* pPlayer;
+	bool OnField;
 	int value;
 	//int camPos;
 };

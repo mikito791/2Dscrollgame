@@ -151,17 +151,21 @@ void Player::Update()
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
 	}
-	if (CheckHitKey(KEY_INPUT_W))
+	//ƒ‰ƒCƒg
+	if (onGround)
 	{
-		MOVE_SPEED = 0;
-		JUMP_HEIGHT = 0;
-		Light* li = Instantiate<Light>(GetParent());
-		li->SetPosition(transform_.position_);
-	}
-	else
-	{
-		MOVE_SPEED = 5.0f;
-		JUMP_HEIGHT = 48.0f * 4.0f;
+		if (CheckHitKey(KEY_INPUT_W))
+		{
+			MOVE_SPEED = 0;
+			JUMP_HEIGHT = 0;
+			Light* li = Instantiate<Light>(GetParent());
+			li->SetPosition(transform_.position_);
+		}
+		else
+		{
+			MOVE_SPEED = 5.0f;
+			JUMP_HEIGHT = 48.0f * 4.0f;
+		}
 	}
 }
 

@@ -19,7 +19,6 @@ GameOverScene::~GameOverScene()
 
 void GameOverScene::Update()
 {
-	
 	if (CheckHitKey(KEY_INPUT_C))
 	{
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
@@ -37,6 +36,6 @@ void GameOverScene::Draw()
 	if (BlendAlpha == 255)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-		DrawFormatString(1100, 5, GetColor(255, 255, 255),"Cキーでコンティニュー%d");
+		//DrawFormatString(1100, 5, GetColor(255, 255, 255),"Cキーでコンティニュー%d");
 	}
 }

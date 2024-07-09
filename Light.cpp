@@ -3,7 +3,7 @@
 
 Light::Light(GameObject* scene)
 {
-	hImage = LoadGraph("Assets/right.png");
+	hImage = LoadGraph("Assets/light.png");
 	assert(hImage > 0);
 }
 
@@ -38,5 +38,5 @@ void Light::Draw()
 void Light::SetPosition(XMFLOAT3 pos)
 {
 	transform_.position_ = pos;
-	timer = 90;
+	timer = 30;
 }
