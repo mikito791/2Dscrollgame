@@ -28,7 +28,7 @@ void Slime::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	int x = (int)transform_.position_.x;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
-	cam->DrawDarkOverlay();
+	//cam->DrawDarkOverlay();
 	if (cam != nullptr)
 	{
 		x -= cam->GetValue();
@@ -64,7 +64,7 @@ void Slime::Update()
 
 void Slime::Draw()
 {
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	int x = (int)transform_.position_.x;
 	int y = (int)transform_.position_.y;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
