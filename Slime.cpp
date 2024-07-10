@@ -28,7 +28,6 @@ void Slime::Update()
 	Field* pField = GetParent()->FindGameObject<Field>();
 	int x = (int)transform_.position_.x;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
-	//cam->DrawDarkOverlay();
 	if (cam != nullptr)
 	{
 		x -= cam->GetValue();
@@ -73,7 +72,7 @@ void Slime::Draw()
 		x -= cam->GetValue();
 	}
 	DrawRectGraph(x, y, 0, 0, 64, 64,hImage,TRUE,TRUE);
-	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
+	DrawCircle(x + 36.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
 	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100); // “§–¾“x‚ğİ’è (0-255)
 	//DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), TRUE); // ‰æ–Ê‘S‘Ì‚É•‚¢lŠpŒ`‚ğ•`‰æ
 	
@@ -90,7 +89,7 @@ bool Slime::SColliderCircle(float x, float y, float r)
 {
 	//x,y,r‚ª‘Šè‚Ì‰~‚Ìî•ñ
 	//©•ª‚Ì‰~‚Ìî•ñ
-	float myCenterX = transform_.position_.x + 32.0f;
+	float myCenterX = transform_.position_.x + 36.0f;
 	float myCenterY = transform_.position_.y + 32.0f;
 	float dx = myCenterX - x;
 	float dy = myCenterY - y;

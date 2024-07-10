@@ -136,17 +136,23 @@ void Player::Update()
 	}
 	//カメラ
 	//Camera* cam = GetParent()->FindGameObject<Camera>();
-	int x = (int)transform_.position_.x - cam->GetValue();
-	if (x > 400)
+	int xR = (int)transform_.position_.x - cam->GetValue();
+	if (xR > 400)
 	{
-		x = 400;
-		cam->SetValue((int)transform_.position_.x - x);
+		xR = 400;
+		cam->SetValue((int)transform_.position_.x - xR);
+	}
+	int xL = (int)transform_.position_.x + cam->GetValue();
+	if (xL > 400)
+	{
+		xL = 400;
+		cam->SetValue((int)transform_.position_.x - xL);
 	}
 	//カメラのリセット、ステージの移動で使うかも
 	if (CheckHitKey(KEY_INPUT_R))
 	{
-		x = 0;
-		cam->SetValue((int)transform_.position_.x - x);
+		xR = 0;
+		cam->SetValue((int)transform_.position_.x - xR);
 	}
 	/*if (cam != nullptr) {
 		cam->GetPlayerPos(this);
@@ -190,7 +196,7 @@ void Player::Draw()
 	//↓後で消す
 	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
 	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定
-	 // ブレンドモードを元に戻す
+
 }
 
 void Player::SetPosition(int x, int y)
