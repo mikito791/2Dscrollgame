@@ -8,7 +8,7 @@
 #include"Light.h"
 namespace
 {
-	float MOVE_SPEED = 5.0f;
+	float MOVE_SPEED = 4.0f;
 	const float GROUND = 400.0f;
 	float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
 	const float GRAVITY = 9.8f / 60.0f;//重力加速度
@@ -116,7 +116,7 @@ void Player::Update()
 			transform_.position_.y += pushUp;
 		}
 	}
-	if (transform_.position_.y >= 1500)
+	if (transform_.position_.y >= 1000)
 	{
 		KillMe();
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
@@ -176,7 +176,7 @@ void Player::Update()
 		}
 		else
 		{
-			MOVE_SPEED = 5.0f;
+			MOVE_SPEED = 4.0f;
 			JUMP_HEIGHT = 48.0f * 4.0f;
 		}
 	}
