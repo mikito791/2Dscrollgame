@@ -2,6 +2,7 @@
 #include"Camera.h"
 #include"Player.h"
 #include"Slime.h"
+#include"Needle.h"
 #include <assert.h>
 #include"Engine/CsvReader.h"
 //namespace {
@@ -60,8 +61,8 @@ void Field::Reset()
 		Map = nullptr;
 	}
 	CsvReader csv;
-	//bool ret = csv.Load("Assets/stage1.csv");
-	bool ret = csv.Load("Assets/stage2.csv");
+	bool ret = csv.Load("Assets/stage1.csv");
+	//bool ret = csv.Load("Assets/stage2.csv");
 	//bool ret = csv.Load("Assets/stage3.csv");
 	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
@@ -99,6 +100,10 @@ void Field::Reset()
 				pSlime->SetPosition(w * 32, h * 32);
 				break;
 			}
+			case 2://needle
+				Needle * pNeedle = Instantiate<Needle>(GetParent());
+				pNeedle->SetPosition(w * 32, h * 32);
+				break;
 			}
 		}
 	}

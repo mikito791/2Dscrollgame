@@ -3,6 +3,7 @@
 #include <assert.h>
 #include"Field.h"
 #include"Slime.h"
+#include"Needle.h"
 #include"Camera.h"
 #include"Engine/SceneManager.h"
 #include"Light.h"
@@ -12,16 +13,20 @@ namespace
 	const float GROUND = 400.0f;
 	float JUMP_HEIGHT = 48.0f * 4.0f;//ジャンプの高さ
 	const float GRAVITY = 9.8f / 60.0f;//重力加速度
-	const float TRANS_Y = 63;
-	const float TRANS_XR = 50;
-	const float TRANS_XL = 14;
+	//const float TRANS_Y = 63;
+	//const float TRANS_XR = 50;
+	//const float TRANS_XL = 14;
+	const float TRANS_Y = 58;
+	const float TRANS_XR = 25;
+	const float TRANS_XL = 10;
 	/*Memo const float JUMP = -12.0f;
 	const float GRAVITY = 0.5f;
 	XMFLOAT3 JumpSpeed{ 0,0,0 };*/
 }
 Player::Player(GameObject* parent) : GameObject(sceneTop)
 {
-	hImage = LoadGraph("Assets/aoi.png");
+	//hImage = LoadGraph("Assets/aoi.png");
+	hImage = LoadGraph("Assets/m_idle.png");
 	assert(hImage > 0);
 	transform_.position_.x = 10.0f;
 	transform_.position_.y = GROUND;
@@ -122,13 +127,24 @@ void Player::Update()
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 	}
-	//当たり判定
+	//当たり判定（スライム）
 	std::list<Slime*> pSlimes = GetParent()->FindGameObjects<Slime>();
 	for (Slime* pSlime : pSlimes)
 	{
-		if (pSlime->SColliderCircle(transform_.position_.x+32.0f, transform_.position_.y+32.0f , 20.0f))
+		if (pSlime->SColliderCircle(transform_.position_.x+14.0f, transform_.position_.y+32.0f , 20.0f))//当たり判定の位置はここ
 		{
 			//当たった処理
+			KillMe();
+			SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
+			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
+		}
+	}
+	//当たり判定（とげ）
+	std::list<Needle*>pNeedles = GetParent()->FindGameObjects<Needle>();
+	for (Needle* pNeedle : pNeedles)
+	{
+		if (pNeedle->NColliderCircle(transform_.position_.x + 14.0f, transform_.position_.y + 32.0f, 20.0f))
+		{
 			KillMe();
 			SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
@@ -192,11 +208,12 @@ void Player::Draw()
 	{
 		x -= cam->GetValue();
 	}
-	DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
+	//DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
+	DrawRectGraph(x, y, 0, 0, 37, 64, hImage, TRUE);
 	//↓後で消す
 	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
-	//DrawCircle(x + 32.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定
-
+	DrawCircle(x + 14.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定（丸）
+	//DrawBox(x, y , x + 32, y + 64, GetColor(255, 0, 0), 0);//当たり判定（四角）ワンチャンいらん
 }
 
 void Player::SetPosition(int x, int y)

@@ -70,6 +70,9 @@
     <ClCompile Include="Light.cpp">
       <Filter>ゲームキャラ</Filter>
     </ClCompile>
+    <ClCompile Include="Needle.cpp">
+      <Filter>ゲームキャラ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\GameObject.h">
@@ -118,6 +121,9 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
+      <Filter>ゲームキャラ</Filter>
+    </ClInclude>
+    <ClInclude Include="Needle.h">
       <Filter>ゲームキャラ</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,5 +19,5 @@ private:
 	bool prevSpaceKey;
 	float jumpSpeed;
 	bool onGround;
-	
+	//int HImage;
 };

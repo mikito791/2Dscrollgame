@@ -25,8 +25,8 @@ void Light::Update()
 
 void Light::Draw()
 {
-	int x = (int)transform_.position_.x+40;
-	int y = (int)transform_.position_.y+30;
+	int x = (int)transform_.position_.x+25;
+	int y = (int)transform_.position_.y+20;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
 	if (cam != nullptr)
 	{
