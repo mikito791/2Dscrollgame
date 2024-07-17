@@ -61,8 +61,8 @@ void Field::Reset()
 		Map = nullptr;
 	}
 	CsvReader csv;
-	bool ret = csv.Load("Assets/stage1.csv");
-	//bool ret = csv.Load("Assets/stage2.csv");
+	//bool ret = csv.Load("Assets/stage1.csv");
+	bool ret = csv.Load("Assets/stage2.csv");
 	//bool ret = csv.Load("Assets/stage3.csv");
 	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
@@ -150,15 +150,15 @@ int Field::CollisionLeft(int x, int y)
 
 int Field::CollisionDown(int x, int y)
 {
-	if (IsWallBlock(x, y+1))
-		return (y+1) % 32 + 1;
+	if (IsWallBlock(x, y + 1))
+		return (y + 1) % 32 + 1;
 	return 0;
 }
 
 int Field::CollisionUp(int x, int y)
 {
 	if (IsWallBlock(x, y - 1))
-		return 32 - (y % 32);
+		return (y - 1) % 32 - 1;
 	return 0;
 }
 

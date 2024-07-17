@@ -62,11 +62,12 @@ void Slime::Update()
 			}
 		}
 	}
-	
+
 }
 
 void Slime::Draw()
 {
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 40); 
 	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	int x = (int)transform_.position_.x;
 	int y = (int)transform_.position_.y;
@@ -79,6 +80,7 @@ void Slime::Draw()
 	DrawCircle(x + 36.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
 	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100); // 透明度を設定 (0-255)
 	//DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), TRUE); // 画面全体に黒い四角形を描画
+	// 透明度を設定 (0-255)
 	
 }
 

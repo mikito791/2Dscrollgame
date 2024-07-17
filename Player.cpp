@@ -131,7 +131,7 @@ void Player::Update()
 	std::list<Slime*> pSlimes = GetParent()->FindGameObjects<Slime>();
 	for (Slime* pSlime : pSlimes)
 	{
-		if (pSlime->SColliderCircle(transform_.position_.x+14.0f, transform_.position_.y+32.0f , 20.0f))//当たり判定の位置はここ
+		if (pSlime->SColliderCircle(transform_.position_.x+14.0f, transform_.position_.y+32.0f , 10.0f))//当たり判定の位置はここ
 		{
 			//当たった処理
 			KillMe();
@@ -143,7 +143,7 @@ void Player::Update()
 	std::list<Needle*>pNeedles = GetParent()->FindGameObjects<Needle>();
 	for (Needle* pNeedle : pNeedles)
 	{
-		if (pNeedle->NColliderCircle(transform_.position_.x + 14.0f, transform_.position_.y + 32.0f, 20.0f))
+		if (pNeedle->NColliderCircle(transform_.position_.x + 14.0f, transform_.position_.y + 32.0f, 15.0f))
 		{
 			KillMe();
 			SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
@@ -212,7 +212,7 @@ void Player::Draw()
 	DrawRectGraph(x, y, 0, 0, 37, 64, hImage, TRUE);
 	//↓後で消す
 	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
-	DrawCircle(x + 14.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);//当たり判定（丸）
+	DrawCircle(x + 14.0f, y + 32.0f, 15.0f, GetColor(255, 0, 0), 0);//当たり判定（丸）
 	//DrawBox(x, y , x + 32, y + 64, GetColor(255, 0, 0), 0);//当たり判定（四角）ワンチャンいらん
 }
 

@@ -23,7 +23,7 @@ void Needle::Update()
     {
         x -= cam->GetValue();
     }
-    cam->DrawDarkOverlay();
+    //cam->DrawDarkOverlay();
 }
 
 void Needle::Draw()
@@ -36,12 +36,10 @@ void Needle::Draw()
         x -= cam->GetValue();
     }
     DrawGraph(x, y, hImage, TRUE);
-    float myX = transform_.position_.x;
-    float myY = transform_.position_.y+48;
-    float myWidth = myX + 32;
-    float myHeight = myY + 16;
-    //DrawBox(myX, myY, myWidth, myHeight, GetColor(255, 0, 0), 0);
-    DrawCircle(myX+16,myY +16, 20, GetColor(255, 0, 0), 0);
+
+    //DrawBox(x, y+32, x+32, y+16, GetColor(255, 0, 0), 0);
+
+    DrawCircle(x+16, y+32, 17, GetColor(255, 0, 0), 0);
 }
 
 void Needle::SetPosition(int x, int y)
@@ -54,9 +52,9 @@ bool Needle::NColliderRect(float x, float y, float w, float h)
 {
     //↓自分の情報
     float myLeft = transform_.position_.x;
-    float myTop = transform_.position_.y + 48; // y軸方向に64ピクセル下がった位置が上端
-    float myRight = myLeft + 32; // x軸方向に32ピクセル右に広がる位置が右端
-    float myBottom = myTop+16; // 上端から48ピクセル下がった位置が下端
+    float myTop = transform_.position_.y + 64; // y軸方向に64ピクセル下がった位置が上端
+    float myRight = transform_.position_.x + 32; // x軸方向に32ピクセル右に広がる位置が右端
+    float myBottom = transform_.position_.x+64+16; // 上端から48ピクセル下がった位置が下端
 
     // 相手の情報
     float yLeft = x;
@@ -85,7 +83,7 @@ bool Needle::NColliderCircle(float x, float y, float r)
     float dSqrts = dx * dx + dy * dy;
     //float dSqrts =sqrt(dx * dx + dy * dy);
 
-    float myR = 20.0f + r;
+    float myR = 17.0f + r;
     float rSqrt = myR * myR;
     //float rSqrt = sqrt(myR * myR);
     if (dSqrts <= rSqrt)
