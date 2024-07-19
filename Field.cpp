@@ -5,6 +5,7 @@
 #include"Needle.h"
 #include <assert.h>
 #include"Engine/CsvReader.h"
+#include"Engine/SceneManager.h"
 //namespace {
 //	static const int WIDTH = 112;
 //	static const int HEIGHT = 22;
@@ -61,9 +62,10 @@ void Field::Reset()
 		Map = nullptr;
 	}
 	CsvReader csv;
+	//bool ret = csv.Load("Assets/stage2.csv");
+	bool ret = csv.Load("Assets/stage3.csv");
+
 	//bool ret = csv.Load("Assets/stage1.csv");
-	bool ret = csv.Load("Assets/stage2.csv");
-	//bool ret = csv.Load("Assets/stage3.csv");
 	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
 	width = csv.GetWidth(0);

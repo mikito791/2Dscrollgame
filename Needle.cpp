@@ -39,7 +39,7 @@ void Needle::Draw()
 
     //DrawBox(x, y+32, x+32, y+16, GetColor(255, 0, 0), 0);
 
-    DrawCircle(x+16, y+32, 17, GetColor(255, 0, 0), 0);
+    //DrawCircle(x+16, y+32, 17, GetColor(255, 0, 0), 0);
 }
 
 void Needle::SetPosition(int x, int y)

@@ -15,4 +15,7 @@ public:
 	bool SColliderCircle(float x, float y, float r);
 private:
 	int hImage;
+	int animType;//ó‹µ
+	int animFrame;//ƒRƒ}
+	int frameCounter;
 };

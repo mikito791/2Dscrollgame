@@ -9,6 +9,7 @@ class Player : public GameObject
 public:
 	Player(GameObject* scene);
 	~Player();
+	void CamReset();
 	void Update() override;
 	void Draw() override;
 	void SetPosition(int x, int y);
@@ -20,4 +21,10 @@ private:
 	float jumpSpeed;
 	bool onGround;
 	//int HImage;
+	enum State
+	{
+		S_PLAY = 0,
+		S_GOAL,
+	};
+	State state;
 };

@@ -9,10 +9,13 @@ namespace {
 }
 Slime::Slime(GameObject* scene)
 {
-	hImage = LoadGraph("Assets/slime.png");
+	hImage = LoadGraph("Assets/slime_run1.png");
 	assert(hImage > 0);
 	/*transform_.position_.x = 800.0f;
 	transform_.position_.y = 500.0f;*/
+	frameCounter = 0;
+	animType = 0;
+	animFrame = 0;
 }
 
 Slime::~Slime()
@@ -55,6 +58,10 @@ void Slime::Update()
 		{
 			transform_.position_.y -= push;
 			transform_.position_.x -= 0.5f;
+			if (++frameCounter >= 6) {
+				animFrame = (animFrame + 1) % 3;
+				frameCounter = 0;
+			}
 			int pushEnd = pField->IsLeftEnd(transform_.position_.x + 50, transform_.position_.y + 42);
 			if (pushEnd >= 1)
 			{
@@ -67,8 +74,8 @@ void Slime::Update()
 
 void Slime::Draw()
 {
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 40); 
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 40); 
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	int x = (int)transform_.position_.x;
 	int y = (int)transform_.position_.y;
 	Camera* cam = GetParent()->FindGameObject<Camera>();
@@ -76,8 +83,8 @@ void Slime::Draw()
 	{
 		x -= cam->GetValue();
 	}
-	DrawRectGraph(x, y, 0, 0, 64, 64,hImage,TRUE,TRUE);
-	DrawCircle(x + 36.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
+	DrawRectGraph(x, y, animFrame*64, 0, 64, 64,hImage,TRUE,TRUE);
+	//DrawCircle(x + 36.0f, y + 32.0f, 20.0f, GetColor(255, 0, 0), 0);
 	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100); // 透明度を設定 (0-255)
 	//DrawBox(0, 0, 1280, 720, GetColor(0, 0, 0), TRUE); // 画面全体に黒い四角形を描画
 	// 透明度を設定 (0-255)

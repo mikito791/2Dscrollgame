@@ -33,6 +33,14 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 	jumpSpeed = 0.0f;
 	onGround = true;
 	prevSpaceKey = false;
+	if (state != S_GOAL)
+	{
+		state = S_PLAY;
+	}
+	else
+	{
+		state = S_GOAL;
+	}
 }
 
 Player::~Player()
@@ -43,10 +51,19 @@ Player::~Player()
 	}
 }
 
+void Player::CamReset()
+{
+	Camera* cam = GetParent()->FindGameObject<Camera>();
+	int camR = (int)transform_.position_.x - cam->GetValue();
+	camR = 0;
+	cam->SetValue((int)transform_.position_.x - camR);
+}
+
 void Player::Update()
 {
 	Field* pField = GetParent()->FindGameObject<Field>();
 	Camera* cam = GetParent()->FindGameObject<Camera>();
+	SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 	cam->DrawDarkOverlay();
 	//移動
 	if (CheckHitKey(KEY_INPUT_D))
@@ -123,8 +140,7 @@ void Player::Update()
 	}
 	if (transform_.position_.y >= 1000)
 	{
-		KillMe();
-		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
+		KillMe();	
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 	}
 	//当たり判定（スライム）
@@ -135,7 +151,6 @@ void Player::Update()
 		{
 			//当たった処理
 			KillMe();
-			SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 		}
 	}
@@ -146,7 +161,6 @@ void Player::Update()
 		if (pNeedle->NColliderCircle(transform_.position_.x + 14.0f, transform_.position_.y + 32.0f, 15.0f))
 		{
 			KillMe();
-			SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
 			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 		}
 	}
@@ -167,8 +181,7 @@ void Player::Update()
 	//カメラのリセット、ステージの移動で使うかも
 	if (CheckHitKey(KEY_INPUT_R))
 	{
-		xR = 0;
-		cam->SetValue((int)transform_.position_.x - xR);
+		CamReset();
 	}
 	/*if (cam != nullptr) {
 		cam->GetPlayerPos(this);
@@ -177,8 +190,15 @@ void Player::Update()
 	int Goal = pField->IsGoal(transform_.position_.x, transform_.position_.y);
 	if (Goal > 0)
 	{
-		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
-		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
+		if (state == S_GOAL)
+		{
+			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
+		}
+		else
+		{
+			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
+		}
+		state = S_GOAL;
 	}
 	//ライト
 	if (onGround)
@@ -212,7 +232,7 @@ void Player::Draw()
 	DrawRectGraph(x, y, 0, 0, 37, 64, hImage, TRUE);
 	//↓後で消す
 	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
-	DrawCircle(x + 14.0f, y + 32.0f, 15.0f, GetColor(255, 0, 0), 0);//当たり判定（丸）
+	//DrawCircle(x + 14.0f, y + 32.0f, 15.0f, GetColor(255, 0, 0), 0);//当たり判定（丸）
 	//DrawBox(x, y , x + 32, y + 64, GetColor(255, 0, 0), 0);//当たり判定（四角）ワンチャンいらん
 }
 
@@ -221,6 +241,8 @@ void Player::SetPosition(int x, int y)
 	transform_.position_.x = x;
 	transform_.position_.y = y;
 }
+
+
 
 //bool Player::PColliderCircle(float x, float y, float r)
 //{

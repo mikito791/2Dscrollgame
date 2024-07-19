@@ -18,7 +18,8 @@ GameOverScene::~GameOverScene()
 }
 
 void GameOverScene::Update()
-{
+{   
+	
 	if (CheckHitKey(KEY_INPUT_C))
 	{
 		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
