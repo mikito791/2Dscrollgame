@@ -61,10 +61,11 @@ void Field::Reset()
 		delete[]Map;
 		Map = nullptr;
 	}
+
 	CsvReader csv;
 	//bool ret = csv.Load("Assets/stage2.csv");
 	bool ret = csv.Load("Assets/stage3.csv");
-
+	
 	//bool ret = csv.Load("Assets/stage1.csv");
 	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
@@ -103,6 +104,62 @@ void Field::Reset()
 				break;
 			}
 			case 2://needle
+				Needle *pNeedle = Instantiate<Needle>(GetParent());
+				pNeedle->SetPosition(w * 32, h * 32);
+				break;
+			}
+		}
+	}
+}
+void Field::DifficlutStageSet()
+{
+	if (Map != nullptr)
+	{
+		delete[]Map;
+		Map = nullptr;
+	}
+	CsvReader csv;
+	bool ret = csv.Load("Assets/stage2.csv");
+	//bool ret = csv.Load("Assets/stage3.csv");
+
+	//bool ret = csv.Load("Assets/stage1.csv");
+	//bool ret = csv.Load("Assets/stage4.csv");
+	assert(ret);
+	width = csv.GetWidth(0);
+	height = csv.GetHeight();
+	Map = new int[width * height];
+	for (int h = 0; h < height; h++)
+	{
+		if (csv.GetString(0, h) == "")
+		{
+			height = h;
+			break;
+		}
+		for (int w = 0; w < width; w++)
+		{
+			Map[h * width + w] = csv.GetInt(w, h);
+		}
+	}
+
+	for (int h = 0; h < height; h++)
+	{
+		for (int w = 0; w < width; w++)
+		{
+			switch (csv.GetInt(w, h + height + 1))
+			{//ƒLƒƒƒ‰‚ð‘‚â‚µ‚½‚¢‚Æ‚«‚Í‚±‚±‚É
+			case 0://player
+			{
+				Player* pPlayer = GetParent()->FindGameObject<Player>();
+				pPlayer->SetPosition(w * 32, h * 32);
+				break;
+			}
+			case 1://slime
+			{
+				Slime* pSlime = Instantiate<Slime>(GetParent());
+				pSlime->SetPosition(w * 32, h * 32);
+				break;
+			}
+			case 2://needle
 				Needle * pNeedle = Instantiate<Needle>(GetParent());
 				pNeedle->SetPosition(w * 32, h * 32);
 				break;
@@ -112,8 +169,10 @@ void Field::Reset()
 }
 void Field::Update()
 {
+#if 0
 	if (CheckHitKey(KEY_INPUT_R))
 		Reset();
+#endif
 }
 
 void Field::Draw()

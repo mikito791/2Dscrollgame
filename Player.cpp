@@ -33,14 +33,7 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 	jumpSpeed = 0.0f;
 	onGround = true;
 	prevSpaceKey = false;
-	if (state != S_GOAL)
-	{
-		state = S_PLAY;
-	}
-	else
-	{
-		state = S_GOAL;
-	}
+	GoalCount = 0;
 }
 
 Player::~Player()
@@ -179,10 +172,12 @@ void Player::Update()
 		cam->SetValue((int)transform_.position_.x - xL);
 	}
 	//カメラのリセット、ステージの移動で使うかも
+#if 0
 	if (CheckHitKey(KEY_INPUT_R))
 	{
 		CamReset();
 	}
+#endif
 	/*if (cam != nullptr) {
 		cam->GetPlayerPos(this);
 	}*/
@@ -190,15 +185,13 @@ void Player::Update()
 	int Goal = pField->IsGoal(transform_.position_.x, transform_.position_.y);
 	if (Goal > 0)
 	{
-		if (state == S_GOAL)
+		pField->DifficlutStageSet();
+		CamReset();
+		GoalCount=GoalCount+1;
+		if (GoalCount == 2)
 		{
 			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
 		}
-		else
-		{
-			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
-		}
-		state = S_GOAL;
 	}
 	//ライト
 	if (onGround)

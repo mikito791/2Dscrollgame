@@ -20,11 +20,6 @@ private:
 	bool prevSpaceKey;
 	float jumpSpeed;
 	bool onGround;
-	//int HImage;
-	enum State
-	{
-		S_PLAY = 0,
-		S_GOAL,
-	};
-	State state;
+	int GoalCount;
+	
 };

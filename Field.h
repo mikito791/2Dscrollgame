@@ -1,5 +1,8 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include"Player.h"
+#include"Slime.h"
+#include"Needle.h"
 
 /// <summary>
 /// 地面（プレイフィールド）
@@ -10,6 +13,7 @@ public:
 	Field(GameObject* scene);
 	~Field();
 	void Reset();
+	void DifficlutStageSet();
 	void Update() override;
 	void Draw() override;
 	/// <summary>
@@ -36,5 +40,7 @@ private:
 	int* Map;
 	int height;
 	int width;
-	
+	Player* pPlayer;
+	Slime* pSlime;
+	Needle* pNeedle;
 };
