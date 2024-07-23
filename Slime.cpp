@@ -43,10 +43,7 @@ void Slime::Update()
 		return;
 	}
 	transform_.position_.y += GRAVITY;
-	if (transform_.position_.y == 500)
-	{
-		KillMe();
-	}
+	
 	if (pField != nullptr)
 	{
 		int pushR = pField->CollisionDown(transform_.position_.x+50, transform_.position_.y+42);
@@ -58,16 +55,20 @@ void Slime::Update()
 		{
 			transform_.position_.y -= push;
 			transform_.position_.x -= 0.5f;
+			if (transform_.position_.y == 450)
+			{
+				KillMe();
+			}
 			if (++frameCounter >= 6) {
 				animFrame = (animFrame + 1) % 3;
 				frameCounter = 0;
 			}
-			int pushEnd = pField->IsLeftEnd(transform_.position_.x + 50, transform_.position_.y + 42);
-			if (pushEnd >= 1)
-			{
-				KillMe();
-			}
 		}
+	}
+	int pushEnd = pField->IsLeftEnd(transform_.position_.x + 50, transform_.position_.y + 42);
+	if (pushEnd >= 1)
+	{
+		KillMe();
 	}
 
 }

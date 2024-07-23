@@ -27,6 +27,7 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 {
 	//hImage = LoadGraph("Assets/aoi.png");
 	hImage = LoadGraph("Assets/m_idle.png");
+	//hImage = LoadGraph("Assets/m_walk.png");
 	assert(hImage > 0);
 	transform_.position_.x = 10.0f;
 	transform_.position_.y = GROUND;
@@ -34,6 +35,8 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 	onGround = true;
 	prevSpaceKey = false;
 	GoalCount = 0;
+	SoundJump = LoadSoundMem("Assets/retrojump.mp3");
+	assert(SoundJump >= 0);
 }
 
 Player::~Player()
@@ -90,6 +93,7 @@ void Player::Update()
 	{
 		if (prevSpaceKey == false) {
 			if (onGround) {
+				PlaySoundMem(SoundJump, DX_PLAYTYPE_BACK);
 				jumpSpeed = -sqrt(2 * GRAVITY * JUMP_HEIGHT);
 				onGround = false;
 			}
@@ -202,11 +206,13 @@ void Player::Update()
 			JUMP_HEIGHT = 0;
 			Light* li = Instantiate<Light>(GetParent());
 			li->SetPosition(transform_.position_);
+			StopSoundMem(SoundJump);
 		}
 		else
 		{
 			MOVE_SPEED = 4.0f;
 			JUMP_HEIGHT = 48.0f * 4.0f;
+			
 		}
 	}
 }

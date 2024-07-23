@@ -1,4 +1,5 @@
 #include "PlayScene.h"
+#include"UI.h"
 #include"BackGround.h"
 #include"Camera.h"
 #include "Player.h"
@@ -14,13 +15,14 @@ PlayScene::PlayScene(GameObject * parent)
 //‰Šú‰»
 void PlayScene::Initialize()
 {
-
+	
 	Instantiate<BackGround>(this);
 	Instantiate<Camera>(this);
 	Field* pField = Instantiate<Field>(this);
 	//Instantiate<Slime>(this);
 	Instantiate<Player>(this);
 	pField->Reset();
+	Instantiate<UI>(this);
 	//Instantiate<Bird>(this);
 }
 
@@ -32,6 +34,7 @@ void PlayScene::Update()
 //•`‰æ
 void PlayScene::Draw()
 {
+	
 }
 
 //ŠJ•ú

@@ -21,5 +21,9 @@ private:
 	float jumpSpeed;
 	bool onGround;
 	int GoalCount;
-	
+	int SoundJump;
+	//int animType;//ó‹µ
+	//int animFrame;//ƒRƒ}
+	//int frameCounter;
+
 };

@@ -40,7 +40,7 @@ private:
 	int* Map;
 	int height;
 	int width;
-	Player* pPlayer;
+	/*Player* pPlayer;
 	Slime* pSlime;
-	Needle* pNeedle;
+	Needle* pNeedle;*/
 };
