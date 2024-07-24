@@ -21,6 +21,7 @@ void UI::Draw()
 	DrawFormatString(0, 45, GetColor(255, 255, 255), "Dキーで→");
 	DrawFormatString(0, 65, GetColor(255, 255, 255), "SPACEキーでJUMP");
 	DrawFormatString(0, 85, GetColor(255, 255, 255), "WキーでLIGHT");
+	DrawFormatString(0, 105, GetColor(255, 255, 255), "Cキーでコンティニュー");
 	
 }
 

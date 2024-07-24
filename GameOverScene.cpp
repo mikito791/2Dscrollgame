@@ -7,6 +7,7 @@ GameOverScene::GameOverScene(GameObject* parent) :GameObject(parent, "GamoOver")
 	hImage = LoadGraph("Assets/GameOver.png");
 	assert(hImage > 0);
 	BlendAlpha = 0;
+	
 }
 
 GameOverScene::~GameOverScene()
@@ -39,4 +40,5 @@ void GameOverScene::Draw()
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		//DrawFormatString(1100, 5, GetColor(255, 255, 255),"Cキーでコンティニュー%d");
 	}
+	
 }

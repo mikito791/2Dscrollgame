@@ -26,8 +26,8 @@ namespace
 Player::Player(GameObject* parent) : GameObject(sceneTop)
 {
 	//hImage = LoadGraph("Assets/aoi.png");
-	hImage = LoadGraph("Assets/m_idle.png");
-	//hImage = LoadGraph("Assets/m_walk.png");
+	//hImage = LoadGraph("Assets/m_idle.png");
+	hImage = LoadGraph("Assets/m_walk.png");
 	assert(hImage > 0);
 	transform_.position_.x = 10.0f;
 	transform_.position_.y = GROUND;
@@ -37,6 +37,15 @@ Player::Player(GameObject* parent) : GameObject(sceneTop)
 	GoalCount = 0;
 	SoundJump = LoadSoundMem("Assets/retrojump.mp3");
 	assert(SoundJump >= 0);
+	frameCounter = 0;
+	animType = 0;
+	animFrame = 0;
+	GameOverSound = LoadSoundMem("Assets/GameOverSound.mp3");
+	assert(GameOverSound >= 0);
+	GameClearSound = LoadSoundMem("Assets/GameClearSound.mp3");
+	assert(GameClearSound >= 0);
+	RunSound = LoadSoundMem("Assets/run.mp3");
+	assert(RunSound >= 0);
 }
 
 Player::~Player()
@@ -65,6 +74,11 @@ void Player::Update()
 	if (CheckHitKey(KEY_INPUT_D))
 	{
 		transform_.position_.x += MOVE_SPEED;
+		//PlaySoundMem(RunSound, DX_PLAYTYPE_BACK);
+		if (++frameCounter >= 6) {
+			animFrame = (animFrame + 1) % 3;
+			frameCounter = 0;
+		}
 		int hitX = transform_.position_.x + TRANS_XR;
 		int hitY = transform_.position_.y + TRANS_Y;
 		if (pField != nullptr)
@@ -76,6 +90,11 @@ void Player::Update()
 	else if (CheckHitKey(KEY_INPUT_A))
 	{
 		transform_.position_.x -= MOVE_SPEED;
+		PlaySoundMem(RunSound, DX_PLAYTYPE_BACK);
+		if (++frameCounter >= 6) {
+			animFrame = (animFrame + 1) % 3;
+			frameCounter = 0;
+		}
 		int hitX = transform_.position_.x + TRANS_XL;
 		int hitY = transform_.position_.y + TRANS_Y;
 		if (pField != nullptr)
@@ -83,6 +102,12 @@ void Player::Update()
 			int push = pField->CollisionLeft(hitX, hitY);
 			transform_.position_.x += push;
 		}
+	}
+	else
+	{
+		animFrame = 0;
+		frameCounter = 0;
+		//StopSoundMem(RunSound);
 	}
 	if (transform_.position_.x < 0)
 	{
@@ -137,7 +162,8 @@ void Player::Update()
 	}
 	if (transform_.position_.y >= 1000)
 	{
-		KillMe();	
+		KillMe();
+		PlaySoundMem(GameOverSound, DX_PLAYTYPE_BACK);
 		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 	}
 	//当たり判定（スライム）
@@ -148,6 +174,7 @@ void Player::Update()
 		{
 			//当たった処理
 			KillMe();
+			PlaySoundMem(GameOverSound, DX_PLAYTYPE_BACK);
 			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 		}
 	}
@@ -158,6 +185,7 @@ void Player::Update()
 		if (pNeedle->NColliderCircle(transform_.position_.x + 14.0f, transform_.position_.y + 32.0f, 15.0f))
 		{
 			KillMe();
+			PlaySoundMem(GameOverSound, DX_PLAYTYPE_BACK);
 			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMEOVER);
 		}
 	}
@@ -189,13 +217,13 @@ void Player::Update()
 	int Goal = pField->IsGoal(transform_.position_.x, transform_.position_.y);
 	if (Goal > 0)
 	{
-		pField->DifficlutStageSet();
+		/*pField->DifficlutStageSet();
 		CamReset();
 		GoalCount=GoalCount+1;
-		if (GoalCount == 2)
-		{
-			pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
-		}
+		if (GoalCount == 2)*/
+		PlaySoundMem(GameClearSound, DX_PLAYTYPE_BACK);
+		pSM->ChangeScene(SCENE_ID::SCENE_ID_GAMECLEAR);
+		
 	}
 	//ライト
 	if (onGround)
@@ -207,6 +235,9 @@ void Player::Update()
 			Light* li = Instantiate<Light>(GetParent());
 			li->SetPosition(transform_.position_);
 			StopSoundMem(SoundJump);
+			StopSoundMem(RunSound);
+			animFrame = 0;
+			frameCounter = 0;
 		}
 		else
 		{
@@ -228,7 +259,7 @@ void Player::Draw()
 		x -= cam->GetValue();
 	}
 	//DrawRectGraph(x, y, 0, 0, 64, 64, hImage, TRUE);
-	DrawRectGraph(x, y, 0, 0, 37, 64, hImage, TRUE);
+	DrawRectGraph(x, y, animFrame * 37, 0, 37, 64, hImage, TRUE);
 	//↓後で消す
 	//DrawCircle(x + 32.0f, y + 32.0f, 100.0f, GetColor(0, 0, 0), 0);//見える範囲
 	//DrawCircle(x + 14.0f, y + 32.0f, 15.0f, GetColor(255, 0, 0), 0);//当たり判定（丸）

@@ -22,8 +22,10 @@ private:
 	bool onGround;
 	int GoalCount;
 	int SoundJump;
-	//int animType;//状況
-	//int animFrame;//コマ
-	//int frameCounter;
-
+	int animType;//状況
+	int animFrame;//コマ
+	int frameCounter;
+	int GameOverSound;
+	int GameClearSound;
+	int RunSound;
 };

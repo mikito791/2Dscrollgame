@@ -63,11 +63,9 @@ void Field::Reset()
 	}
 
 	CsvReader csv;
-	//bool ret = csv.Load("Assets/stage2.csv");
-	bool ret = csv.Load("Assets/stage3.csv");
+	bool ret = csv.Load("Assets/stage2.csv");//難しいステージ
+	//bool ret = csv.Load("Assets/stage3.csv");//簡単ステージ
 	
-	//bool ret = csv.Load("Assets/stage1.csv");
-	//bool ret = csv.Load("Assets/stage4.csv");
 	assert(ret);
 	width = csv.GetWidth(0);
 	height = csv.GetHeight();
@@ -118,6 +116,11 @@ void Field::DifficlutStageSet()
 		delete[]Map;
 		Map = nullptr;
 	}
+	if (pSlime != nullptr)
+	{
+		delete[]pSlime;
+		pSlime = nullptr;
+	}
 	CsvReader csv;
 	bool ret = csv.Load("Assets/stage2.csv");
 	//bool ret = csv.Load("Assets/stage3.csv");
@@ -155,7 +158,7 @@ void Field::DifficlutStageSet()
 			}
 			case 1://slime
 			{
-				Slime* pSlime = Instantiate<Slime>(GetParent());
+				pSlime = Instantiate<Slime>(GetParent());
 				pSlime->SetPosition(w * 32, h * 32);
 				break;
 			}

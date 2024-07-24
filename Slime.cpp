@@ -11,8 +11,8 @@ Slime::Slime(GameObject* scene)
 {
 	hImage = LoadGraph("Assets/slime_run1.png");
 	assert(hImage > 0);
-	/*transform_.position_.x = 800.0f;
-	transform_.position_.y = 500.0f;*/
+	//transform_.position_.x = 800.0f;
+	transform_.position_.y = 400.0f;
 	frameCounter = 0;
 	animType = 0;
 	animFrame = 0;
@@ -35,6 +35,10 @@ void Slime::Update()
 	{
 		x -= cam->GetValue();
 	}
+	if (pField == nullptr)
+	{
+		return;
+	}
 	if (x > SCREEN_WIDTH)//即値、マジックナンバー
 		return;
 	else if (x < -SCREEN_WIDTH)
@@ -43,7 +47,10 @@ void Slime::Update()
 		return;
 	}
 	transform_.position_.y += GRAVITY;
-	
+	if (transform_.position_.y < 350)
+	{
+		KillMe();
+	}
 	if (pField != nullptr)
 	{
 		int pushR = pField->CollisionDown(transform_.position_.x+50, transform_.position_.y+42);
@@ -55,10 +62,7 @@ void Slime::Update()
 		{
 			transform_.position_.y -= push;
 			transform_.position_.x -= 0.5f;
-			if (transform_.position_.y == 450)
-			{
-				KillMe();
-			}
+			
 			if (++frameCounter >= 6) {
 				animFrame = (animFrame + 1) % 3;
 				frameCounter = 0;
